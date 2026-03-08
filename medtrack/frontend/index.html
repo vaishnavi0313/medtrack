@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedTrack — Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <div class="brand-icon">🏥</div>
+      <div>
+        MedTrack
+        <span class="brand-sub">AWS Cloud Healthcare</span>
+      </div>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="index.html">🏠 <span class="link-text">Dashboard</span></a></li>
+      <li><a href="add_patient.html">➕ <span class="link-text">Add Patient</span></a></li>
+      <li><a href="patients.html">👥 <span class="link-text">Patients</span></a></li>
+      <li><a href="book_appointment.html">📅 <span class="link-text">Book</span></a></li>
+      <li><a href="appointments.html">📋 <span class="link-text">Appointments</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Page Content ───────────────────────────────────────── -->
+  <main class="page-wrapper">
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+      <div class="tag">☁️ AWS Cloud Enabled</div>
+      <h1>MedTrack Healthcare<br>Management System</h1>
+      <p>Streamlined patient management and appointment scheduling, powered by the cloud.</p>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="page-header">
+      <h1>Quick Actions</h1>
+      <p>Navigate to key features of the system</p>
+    </div>
+
+    <div class="quick-actions">
+      <a href="add_patient.html" class="action-card" style="--accent-color:#0ea5e9; --icon-bg:#dbeafe;">
+        <div class="ac-icon">➕</div>
+        <h3>Add New Patient</h3>
+        <p>Register a new patient with their personal and medical information.</p>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="patients.html" class="action-card" style="--accent-color:#10b981; --icon-bg:#d1fae5;">
+        <div class="ac-icon">👥</div>
+        <h3>View Patients</h3>
+        <p>Browse the complete list of all registered patients in the system.</p>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="book_appointment.html" class="action-card" style="--accent-color:#f59e0b; --icon-bg:#fef3c7;">
+        <div class="ac-icon">📅</div>
+        <h3>Book Appointment</h3>
+        <p>Schedule a new appointment between a patient and a doctor.</p>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="appointments.html" class="action-card" style="--accent-color:#8b5cf6; --icon-bg:#ede9fe;">
+        <div class="ac-icon">📋</div>
+        <h3>View Appointments</h3>
+        <p>See all scheduled appointments and their details at a glance.</p>
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

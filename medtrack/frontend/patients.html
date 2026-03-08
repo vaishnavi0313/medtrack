@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedTrack — Patients</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <div class="brand-icon">🏥</div>
+      <div>
+        MedTrack
+        <span class="brand-sub">AWS Cloud Healthcare</span>
+      </div>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="index.html">🏠 <span class="link-text">Dashboard</span></a></li>
+      <li><a href="add_patient.html">➕ <span class="link-text">Add Patient</span></a></li>
+      <li><a href="patients.html">👥 <span class="link-text">Patients</span></a></li>
+      <li><a href="book_appointment.html">📅 <span class="link-text">Book</span></a></li>
+      <li><a href="appointments.html">📋 <span class="link-text">Appointments</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Page Content ───────────────────────────────────────── -->
+  <main class="page-wrapper">
+
+    <div class="page-header">
+      <div class="breadcrumb">
+        <a href="index.html">Dashboard</a>
+        <span>›</span>
+        <span>Patients</span>
+      </div>
+      <h1>👥 Patient Records</h1>
+      <p>All registered patients in the system</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2><span class="icon">📋</span> Patient Directory
+          <span style="font-size:0.8rem; font-weight:500; color:var(--text-light); margin-left:8px;">
+            (<span id="patientCount">…</span> total)
+          </span>
+        </h2>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button id="refreshBtn" class="btn btn-outline" style="padding:6px 14px; font-size:0.8rem;">
+            🔄 Refresh
+          </button>
+          <a href="add_patient.html" class="btn btn-primary" style="padding:6px 14px; font-size:0.8rem;">
+            ➕ Add Patient
+          </a>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient ID</th>
+              <th>Full Name</th>
+              <th>Age</th>
+              <th>Diagnosis</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="patientsBody">
+            <tr class="loading-row">
+              <td colspan="5"><span class="spinner"></span> Loading patients…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedTrack — Appointments</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <div class="brand-icon">🏥</div>
+      <div>
+        MedTrack
+        <span class="brand-sub">AWS Cloud Healthcare</span>
+      </div>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="index.html">🏠 <span class="link-text">Dashboard</span></a></li>
+      <li><a href="add_patient.html">➕ <span class="link-text">Add Patient</span></a></li>
+      <li><a href="patients.html">👥 <span class="link-text">Patients</span></a></li>
+      <li><a href="book_appointment.html">📅 <span class="link-text">Book</span></a></li>
+      <li><a href="appointments.html">📋 <span class="link-text">Appointments</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Page Content ───────────────────────────────────────── -->
+  <main class="page-wrapper">
+
+    <div class="page-header">
+      <div class="breadcrumb">
+        <a href="index.html">Dashboard</a>
+        <span>›</span>
+        <span>Appointments</span>
+      </div>
+      <h1>📋 Appointments</h1>
+      <p>All scheduled appointments in the system</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2><span class="icon">📅</span> Appointment Schedule
+          <span style="font-size:0.8rem; font-weight:500; color:var(--text-light); margin-left:8px;">
+            (<span id="appointmentCount">…</span> total)
+          </span>
+        </h2>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button id="refreshBtn" class="btn btn-outline" style="padding:6px 14px; font-size:0.8rem;">
+            🔄 Refresh
+          </button>
+          <a href="book_appointment.html" class="btn btn-primary" style="padding:6px 14px; font-size:0.8rem;">
+            📅 Book New
+          </a>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Appointment ID</th>
+              <th>Patient ID</th>
+              <th>Doctor</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="appointmentsBody">
+            <tr class="loading-row">
+              <td colspan="6"><span class="spinner"></span> Loading appointments…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

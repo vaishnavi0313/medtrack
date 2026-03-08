@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedTrack — Book Appointment</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <div class="brand-icon">🏥</div>
+      <div>
+        MedTrack
+        <span class="brand-sub">AWS Cloud Healthcare</span>
+      </div>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="index.html">🏠 <span class="link-text">Dashboard</span></a></li>
+      <li><a href="add_patient.html">➕ <span class="link-text">Add Patient</span></a></li>
+      <li><a href="patients.html">👥 <span class="link-text">Patients</span></a></li>
+      <li><a href="book_appointment.html">📅 <span class="link-text">Book</span></a></li>
+      <li><a href="appointments.html">📋 <span class="link-text">Appointments</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Page Content ───────────────────────────────────────── -->
+  <main class="page-wrapper">
+
+    <div class="page-header">
+      <div class="breadcrumb">
+        <a href="index.html">Dashboard</a>
+        <span>›</span>
+        <span>Book Appointment</span>
+      </div>
+      <h1>📅 Book Appointment</h1>
+      <p>Schedule a new appointment for a registered patient</p>
+    </div>
+
+    <div class="card" style="max-width: 640px;">
+      <div class="card-header">
+        <h2><span class="icon">🗓️</span> Appointment Scheduling Form</h2>
+      </div>
+      <div class="card-body">
+
+        <form id="bookAppointmentForm" novalidate>
+          <div class="form-grid">
+
+            <div class="form-group full">
+              <label for="patient_id">Patient ID</label>
+              <input
+                type="text"
+                id="patient_id"
+                placeholder="e.g. P-1001"
+                autocomplete="off"
+              />
+              <span class="hint">🔑 Enter the Patient ID from registration. <a href="patients.html" style="color:var(--accent);">View patients →</a></span>
+            </div>
+
+            <div class="form-group full">
+              <label for="doctor_name">Doctor Name</label>
+              <input
+                type="text"
+                id="doctor_name"
+                placeholder="e.g. Dr. Arjun Mehta"
+                autocomplete="off"
+                maxlength="100"
+              />
+              <span class="hint">🩺 Full name of the attending doctor</span>
+            </div>
+
+            <div class="form-group full">
+              <label for="date">Appointment Date</label>
+              <input
+                type="date"
+                id="date"
+              />
+              <span class="hint">📆 Select a future appointment date</span>
+            </div>
+
+          </div>
+
+          <!-- Result Message -->
+          <div id="msg"></div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg">
+              📅 Confirm Appointment
+            </button>
+            <button type="reset" class="btn btn-outline">
+              Clear Form
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <!-- Quick link -->
+    <div class="card" style="max-width: 640px; margin-top: 1rem;">
+      <div class="card-body" style="padding: 1rem 1.5rem;">
+        <div class="alert alert-info" style="margin-top: 0;">
+          <span class="alert-icon">💡</span>
+          <div>Don't know a Patient ID? <a href="patients.html" style="color:var(--accent); font-weight:600;">View the patient directory</a> to find it first.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
