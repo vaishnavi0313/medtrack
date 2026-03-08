@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}My Appointments — Doctor{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="/doctor_dashboard">Dashboard</a><span>›</span><span>My Appointments</span>
+  </div>
+  <h1>👨‍⚕️ My Appointments</h1>
+  <p>All appointments assigned to you</p>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2>
+      <span class="icon">📋</span> Appointment Schedule
+      <span style="font-size:0.8rem; font-weight:500; color:var(--text-light); margin-left:8px;">
+        ({{ appointments|length }} total)
+      </span>
+    </h2>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="/doctor_dashboard" class="btn btn-outline" style="padding:6px 14px; font-size:0.8rem;">
+        ← Dashboard
+      </a>
+      <a href="/submit_diagnosis" class="btn btn-primary" style="padding:6px 14px; font-size:0.8rem;">
+        📝 Submit Diagnosis
+      </a>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    {% if appointments and appointments|length > 0 %}
+    <table>
+      <thead>
+        <tr>
+          <th>Appointment ID</th>
+          <th>Patient Email</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th>Diagnosis</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for appt in appointments %}
+        <tr>
+          <td>{{ appt.appointment_id }}</td>
+          <td>{{ appt.patient_email }}</td>
+          <td>
+            <span class="badge badge-green">📅 {{ appt.date }}</span>
+          </td>
+          <td>{{ appt.time }}</td>
+          <td>
+            {% if appt.status == 'Completed' %}
+              <span class="status-badge status-attended">✅ {{ appt.status }}</span>
+            {% else %}
+              <span class="status-badge status-booked">🔄 {{ appt.status }}</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if appt.diagnosis %}
+              <span class="badge badge-green">{{ appt.diagnosis }}</span>
+            {% else %}
+              <span style="color:var(--muted); font-size:0.8rem;">Not Updated</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if not appt.diagnosis %}
+              <a href="/submit_diagnosis?appointment_id={{ appt.appointment_id }}"
+                 class="btn btn-primary" style="padding:5px 12px; font-size:0.78rem;">
+                📝 Add Diagnosis
+              </a>
+            {% else %}
+              <span style="color:var(--success); font-weight:600; font-size:0.85rem;">✔ Completed</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+      <div class="empty-icon">📅</div>
+      <p>No appointments assigned to you yet.</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

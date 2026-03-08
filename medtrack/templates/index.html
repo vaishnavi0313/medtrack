@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="tag">☁️ AWS Cloud Enabled</div>
+    <h1>MedTrack Healthcare<br>Management System</h1>
+    <p>Streamlined patient management and appointment scheduling, powered by the cloud.</p>
+  </div>
+
+  {% if not session.get('user') %}
+  <!-- Not logged in: prompt -->
+  <div class="card" style="max-width:500px; margin:0 auto 2rem;">
+    <div class="card-body" style="padding:2rem; text-align:center;">
+      <p style="color:var(--text-light); margin-bottom:1.25rem;">Please login or register to access MedTrack.</p>
+      <div style="display:flex; gap:12px; justify-content:center;">
+        <a href="/login" class="btn btn-primary btn-lg">🔐 Login</a>
+        <a href="/register" class="btn btn-outline btn-lg">📝 Register</a>
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+
+  <!-- Stats Row -->
+  <div class="stats-row" style="margin-bottom:2rem;">
+    <div class="stat-card">
+      <div class="stat-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">👥</div>
+      <div class="stat-info">
+        <div class="stat-value" id="statPatients">…</div>
+        <div class="stat-label">Total Patients</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">📅</div>
+      <div class="stat-info">
+        <div class="stat-value" id="statAppointments">…</div>
+        <div class="stat-label">Total Appointments</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">🗓️</div>
+      <div class="stat-info">
+        <div class="stat-value" id="statToday">…</div>
+        <div class="stat-label">Today's Appointments</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="page-header">
+    <h1>Quick Actions</h1>
+    <p>Navigate to key features of the system</p>
+  </div>
+
+  {% if session.get('role') == 'doctor' %}
+  <div class="quick-actions">
+    <a href="/doctor_dashboard" class="action-card" style="--accent-color:#0ea5e9; --icon-bg:#dbeafe;">
+      <div class="ac-icon">👨‍⚕️</div>
+      <h3>Doctor Dashboard</h3>
+      <p>View and manage your scheduled patient appointments.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a href="/view_appointment_doctor" class="action-card" style="--accent-color:#10b981; --icon-bg:#d1fae5;">
+      <div class="ac-icon">📋</div>
+      <h3>My Appointments</h3>
+      <p>Browse all appointments assigned to you.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a href="/submit_diagnosis" class="action-card" style="--accent-color:#f59e0b; --icon-bg:#fef3c7;">
+      <div class="ac-icon">📝</div>
+      <h3>Submit Diagnosis</h3>
+      <p>Update diagnosis and complete patient appointments.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a href="/search" class="action-card" style="--accent-color:#8b5cf6; --icon-bg:#ede9fe;">
+      <div class="ac-icon">🔍</div>
+      <h3>Search by Date</h3>
+      <p>Find appointments for a specific date.</p>
+      <span class="arrow">↗</span>
+    </a>
+  </div>
+
+  {% else %}
+  <div class="quick-actions">
+    <a href="/book_appointment" class="action-card" style="--accent-color:#0ea5e9; --icon-bg:#dbeafe;">
+      <div class="ac-icon">📅</div>
+      <h3>Book Appointment</h3>
+      <p>Schedule a new appointment with a doctor.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a href="/view_appointment_patient" class="action-card" style="--accent-color:#10b981; --icon-bg:#d1fae5;">
+      <div class="ac-icon">📋</div>
+      <h3>My Appointments</h3>
+      <p>View all your upcoming and past appointments.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a href="/search" class="action-card" style="--accent-color:#f59e0b; --icon-bg:#fef3c7;">
+      <div class="ac-icon">🔍</div>
+      <h3>Search by Date</h3>
+      <p>Find your appointments on a specific date.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a href="/patient_dashboard" class="action-card" style="--accent-color:#8b5cf6; --icon-bg:#ede9fe;">
+      <div class="ac-icon">🧑‍⚕️</div>
+      <h3>Patient Dashboard</h3>
+      <p>Access all patient features in one place.</p>
+      <span class="arrow">↗</span>
+    </a>
+  </div>
+  {% endif %}
+
+  {% endif %}
+
+{% endblock %}

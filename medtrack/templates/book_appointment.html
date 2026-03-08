@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Book Appointment{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="/">Dashboard</a><span>›</span><span>Book Appointment</span>
+  </div>
+  <h1>📅 Book Appointment</h1>
+  <p>Schedule a new appointment with a doctor</p>
+</div>
+
+<div class="card" style="max-width:640px;">
+  <div class="card-header">
+    <h2><span class="icon">🗓️</span> Appointment Scheduling Form</h2>
+  </div>
+  <div class="card-body">
+
+    {% if error %}
+    <div class="alert alert-error">
+      <span class="alert-icon">❌</span>
+      <div>{{ error }}</div>
+    </div>
+    {% endif %}
+
+    <form method="POST" novalidate>
+      <div class="form-grid">
+
+        <div class="form-group full">
+          <label for="doctor_email">Doctor Email</label>
+          <input type="email" id="doctor_email" name="doctor_email"
+            placeholder="e.g. doctor@hospital.com"
+            autocomplete="off" required />
+          <span class="hint">📧 Enter the doctor's registered email address</span>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Appointment Date</label>
+          <input type="date" id="date" name="date" required />
+          <span class="hint">📆 Select a future appointment date</span>
+        </div>
+
+        <div class="form-group">
+          <label for="time">Appointment Time</label>
+          <input type="time" id="time" name="time" required />
+          <span class="hint">🕐 Select a time slot</span>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-lg">📅 Confirm Appointment</button>
+        <button type="reset" class="btn btn-outline">Clear Form</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<div class="card" style="max-width:640px; margin-top:1rem;">
+  <div class="card-body" style="padding:1rem 1.5rem;">
+    <div class="alert alert-info" style="margin-top:0;">
+      <span class="alert-icon">☁️</span>
+      <div>Appointment is saved in <strong>AWS DynamoDB</strong> and a confirmation is sent via <strong>AWS SNS</strong>.</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

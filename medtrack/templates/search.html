@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Search Appointments{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="/">Dashboard</a><span>›</span><span>Search</span>
+  </div>
+  <h1>🔍 Search Appointments</h1>
+  <p>Find appointments by a specific date</p>
+</div>
+
+<!-- Search Form -->
+<div class="card" style="max-width:480px; margin-bottom:1.5rem;">
+  <div class="card-header">
+    <h2><span class="icon">🗓️</span> Date Filter</h2>
+  </div>
+  <div class="card-body">
+    <form method="POST" action="/search" novalidate>
+      <div class="form-group full">
+        <label for="date">Appointment Date</label>
+        <input type="date" id="date" name="date"
+          value="{{ search_date or '' }}" required />
+        <span class="hint">📆 Select the date to search for</span>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-lg">🔍 Search</button>
+        <a href="/" class="btn btn-outline">Clear</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Results -->
+{% if search_date %}
+<div class="card">
+  <div class="card-header">
+    <h2>
+      <span class="icon">📋</span> Results for {{ search_date }}
+      <span style="font-size:0.8rem; font-weight:500; color:var(--text-light); margin-left:8px;">
+        ({{ appointments|length }} found)
+      </span>
+    </h2>
+  </div>
+
+  <div class="table-wrapper">
+    {% if appointments and appointments|length > 0 %}
+    <table>
+      <thead>
+        <tr>
+          <th>Appointment ID</th>
+          <th>Patient Email</th>
+          <th>Doctor Email</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th>Diagnosis</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for appt in appointments %}
+        <tr>
+          <td>{{ appt.appointment_id }}</td>
+          <td>{{ appt.patient_email }}</td>
+          <td>🩺 {{ appt.doctor_email }}</td>
+          <td><span class="badge badge-green">📅 {{ appt.date }}</span></td>
+          <td>{{ appt.time }}</td>
+          <td>
+            {% if appt.status == 'Completed' %}
+              <span class="status-badge status-attended">✅ {{ appt.status }}</span>
+            {% else %}
+              <span class="status-badge status-booked">🔄 {{ appt.status }}</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if appt.diagnosis %}
+              <span class="badge badge-blue">{{ appt.diagnosis }}</span>
+            {% else %}
+              <span style="color:var(--muted); font-size:0.8rem;">Not Updated</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+      <div class="empty-icon">🔍</div>
+      <p>No appointments found for <strong>{{ search_date }}</strong>.</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

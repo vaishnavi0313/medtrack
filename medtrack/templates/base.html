@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedTrack — {% block title %}Dashboard{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>" />
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">
+      <div class="brand-icon">🏥</div>
+      <div>
+        MedTrack
+        <span class="brand-sub">AWS Cloud Healthcare</span>
+      </div>
+    </a>
+    <ul class="navbar-links">
+      {% if session.get('user') %}
+        <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">🏠 <span class="link-text">Dashboard</span></a></li>
+
+        {% if session.get('role') == 'doctor' %}
+          <li><a href="/doctor_dashboard" class="{% if '/doctor_dashboard' in request.path %}active{% endif %}">👨‍⚕️ <span class="link-text">Doctor</span></a></li>
+          <li><a href="/view_appointment_doctor" class="{% if '/view_appointment_doctor' in request.path %}active{% endif %}">📋 <span class="link-text">Appointments</span></a></li>
+          <li><a href="/submit_diagnosis" class="{% if '/submit_diagnosis' in request.path %}active{% endif %}">📝 <span class="link-text">Diagnosis</span></a></li>
+        {% else %}
+          <li><a href="/patient_dashboard" class="{% if '/patient_dashboard' in request.path %}active{% endif %}">🧑‍⚕️ <span class="link-text">Dashboard</span></a></li>
+          <li><a href="/book_appointment" class="{% if '/book_appointment' in request.path %}active{% endif %}">📅 <span class="link-text">Book</span></a></li>
+          <li><a href="/view_appointment_patient" class="{% if '/view_appointment_patient' in request.path %}active{% endif %}">📋 <span class="link-text">Appointments</span></a></li>
+        {% endif %}
+
+        <li><a href="/search" class="{% if '/search' in request.path %}active{% endif %}">🔍 <span class="link-text">Search</span></a></li>
+        <li>
+          <a href="/logout" style="background:rgba(239,68,68,0.15); color:#f87171; border-radius:6px; padding:6px 14px;">
+            🚪 <span class="link-text">Logout</span>
+          </a>
+        </li>
+      {% else %}
+        <li><a href="/login" class="{% if '/login' in request.path %}active{% endif %}">🔐 <span class="link-text">Login</span></a></li>
+        <li><a href="/register" class="{% if '/register' in request.path %}active{% endif %}">📝 <span class="link-text">Register</span></a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <!-- ── Flash Messages ─────────────────────────────────────── -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div style="max-width:1100px; margin:1rem auto; padding:0 1.5rem;">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ 'success' if category == 'success' else 'error' if category == 'danger' else 'info' }}">
+            <span class="alert-icon">{{ '✅' if category == 'success' else '❌' if category == 'danger' else 'ℹ️' }}</span>
+            <div>{{ message }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- ── Main Content ────────────────────────────────────────── -->
+  <main class="page-wrapper">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer style="text-align:center; padding:1.5rem; background:var(--navy); color:rgba(255,255,255,0.45); font-size:0.8rem; margin-top:2rem;">
+    © 2026 MedTrack · Cloud-Enabled Healthcare Management · AWS DynamoDB + SNS
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

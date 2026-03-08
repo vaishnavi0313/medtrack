@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Submit Diagnosis{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="/doctor_dashboard">Dashboard</a><span>›</span><span>Submit Diagnosis</span>
+  </div>
+  <h1>📝 Submit Diagnosis</h1>
+  <p>Update diagnosis for a completed patient appointment</p>
+</div>
+
+<div class="card" style="max-width:640px;">
+  <div class="card-header">
+    <h2><span class="icon">🩺</span> Diagnosis Form</h2>
+  </div>
+  <div class="card-body">
+
+    {% if error %}
+    <div class="alert alert-error">
+      <span class="alert-icon">❌</span>
+      <div>{{ error }}</div>
+    </div>
+    {% endif %}
+
+    <form method="POST" novalidate>
+      <div class="form-grid">
+
+        <div class="form-group full">
+          <label for="appointment_id">Appointment ID</label>
+          <input type="text" id="appointment_id" name="appointment_id"
+            placeholder="e.g. 3fa85f64-5717-4562-b3fc-2c963f66afa6"
+            value="{{ appointment_id or '' }}"
+            autocomplete="off" required />
+          <span class="hint">🔑 Find the ID from your <a href="/view_appointment_doctor" style="color:var(--accent);">appointments list →</a></span>
+        </div>
+
+        <div class="form-group full">
+          <label for="diagnosis">Diagnosis / Notes</label>
+          <textarea id="diagnosis" name="diagnosis"
+            placeholder="e.g. Patient diagnosed with Type 2 Diabetes. Prescribed Metformin 500mg twice daily..."
+            rows="5" maxlength="1000" required
+            style="width:100%; padding:10px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-family:var(--font); font-size:0.9rem; resize:vertical; transition:var(--transition);"
+            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+          <span class="hint">📋 Detailed diagnosis and treatment notes</span>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-lg">📝 Submit Diagnosis</button>
+        <a href="/view_appointment_doctor" class="btn btn-outline">Cancel</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<div class="card" style="max-width:640px; margin-top:1rem;">
+  <div class="card-body" style="padding:1rem 1.5rem;">
+    <div class="alert alert-info" style="margin-top:0;">
+      <span class="alert-icon">☁️</span>
+      <div>Submitting diagnosis will mark the appointment as <strong>Completed</strong> in <strong>AWS DynamoDB</strong>.</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

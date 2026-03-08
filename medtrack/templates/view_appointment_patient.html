@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}My Appointments — Patient{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="/patient_dashboard">Dashboard</a><span>›</span><span>My Appointments</span>
+  </div>
+  <h1>🧑‍⚕️ My Appointments</h1>
+  <p>All your booked appointments</p>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2>
+      <span class="icon">📋</span> Appointment History
+      <span style="font-size:0.8rem; font-weight:500; color:var(--text-light); margin-left:8px;">
+        ({{ appointments|length }} total)
+      </span>
+    </h2>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="/patient_dashboard" class="btn btn-outline" style="padding:6px 14px; font-size:0.8rem;">
+        ← Dashboard
+      </a>
+      <a href="/book_appointment" class="btn btn-primary" style="padding:6px 14px; font-size:0.8rem;">
+        📅 Book New
+      </a>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    {% if appointments and appointments|length > 0 %}
+    <table>
+      <thead>
+        <tr>
+          <th>Appointment ID</th>
+          <th>Doctor Email</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th>Diagnosis</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for appt in appointments %}
+        <tr>
+          <td>{{ appt.appointment_id }}</td>
+          <td>🩺 <strong>{{ appt.doctor_email }}</strong></td>
+          <td>
+            <span class="badge badge-green">📅 {{ appt.date }}</span>
+          </td>
+          <td>{{ appt.time }}</td>
+          <td>
+            {% if appt.status == 'Completed' %}
+              <span class="status-badge status-attended">✅ {{ appt.status }}</span>
+            {% else %}
+              <span class="status-badge status-booked">🔄 {{ appt.status }}</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if appt.diagnosis %}
+              <span class="badge badge-blue">{{ appt.diagnosis }}</span>
+            {% else %}
+              <span style="color:var(--muted); font-size:0.8rem;">Not Yet Updated</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+      <div class="empty-icon">📅</div>
+      <p>No appointments booked yet. <a href="/book_appointment" style="color:var(--accent);">Book one now →</a></p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <h1>🔐 Login</h1>
+  <p>Sign in to your MedTrack account</p>
+</div>
+
+<div class="card" style="max-width:480px;">
+  <div class="card-header">
+    <h2><span class="icon">🔑</span> Account Login</h2>
+  </div>
+  <div class="card-body">
+
+    {% if error %}
+    <div class="alert alert-error">
+      <span class="alert-icon">❌</span>
+      <div>{{ error }}</div>
+    </div>
+    {% endif %}
+
+    <form method="POST" novalidate>
+      <div class="form-grid">
+
+        <div class="form-group full">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email"
+            placeholder="e.g. doctor@hospital.com"
+            autocomplete="email" required />
+          <span class="hint">📧 Your registered email</span>
+        </div>
+
+        <div class="form-group full">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password"
+            placeholder="Enter your password"
+            autocomplete="current-password" required />
+          <span class="hint">🔒 Your account password</span>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-lg">🔐 Login</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<div class="card" style="max-width:480px; margin-top:1rem;">
+  <div class="card-body" style="padding:1rem 1.5rem;">
+    <div class="alert alert-info" style="margin-top:0;">
+      <span class="alert-icon">📝</span>
+      <div>Don't have an account? <a href="/register" style="color:var(--accent); font-weight:600;">Register here →</a></div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

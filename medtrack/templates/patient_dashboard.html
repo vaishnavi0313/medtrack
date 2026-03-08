@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Patient Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="hero-banner" style="padding:2rem 2.5rem;">
+  <div class="tag">🧑‍⚕️ Patient Portal</div>
+  <h1>Welcome, {{ session.get('name', session.get('user', '').split('@')[0].title()) }}</h1>
+  <p>Book appointments and track your health records.</p>
+</div>
+
+<!-- Stats Row -->
+<div class="stats-row" style="margin-bottom:2rem;">
+  <div class="stat-card">
+    <div class="stat-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">📅</div>
+    <div class="stat-info">
+      <div class="stat-value" id="statAppointments">…</div>
+      <div class="stat-label">My Appointments</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">✅</div>
+    <div class="stat-info">
+      <div class="stat-value" id="statCompleted">…</div>
+      <div class="stat-label">Completed</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">🔄</div>
+    <div class="stat-info">
+      <div class="stat-value" id="statScheduled">…</div>
+      <div class="stat-label">Scheduled</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-header">
+  <h1>Quick Actions</h1>
+  <p>Manage your healthcare journey</p>
+</div>
+
+<div class="quick-actions">
+  <a href="/book_appointment" class="action-card" style="--accent-color:#0ea5e9; --icon-bg:#dbeafe;">
+    <div class="ac-icon">📅</div>
+    <h3>Book Appointment</h3>
+    <p>Schedule a new appointment with a doctor quickly.</p>
+    <span class="arrow">↗</span>
+  </a>
+  <a href="/view_appointment_patient" class="action-card" style="--accent-color:#10b981; --icon-bg:#d1fae5;">
+    <div class="ac-icon">📋</div>
+    <h3>My Appointments</h3>
+    <p>View all your upcoming and past appointments.</p>
+    <span class="arrow">↗</span>
+  </a>
+  <a href="/search" class="action-card" style="--accent-color:#f59e0b; --icon-bg:#fef3c7;">
+    <div class="ac-icon">🔍</div>
+    <h3>Search by Date</h3>
+    <p>Find your appointments on a specific date.</p>
+    <span class="arrow">↗</span>
+  </a>
+  <a href="/logout" class="action-card" style="--accent-color:#ef4444; --icon-bg:#fee2e2;">
+    <div class="ac-icon">🚪</div>
+    <h3>Logout</h3>
+    <p>Securely sign out of your MedTrack account.</p>
+    <span class="arrow">↗</span>
+  </a>
+</div>
+
+{% endblock %}
