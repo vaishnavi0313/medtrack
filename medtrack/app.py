@@ -25,7 +25,7 @@ SNS_TOPIC_ARN = "arn:aws:sns:ap-south-1:339713112656:Medtrack"  # ← Your SNS A
 dynamodb = boto3.resource('dynamodb', region_name=REGION)
 sns      = boto3.client('sns',        region_name=REGION)
 
-users_table        = dynamodb.Table('UsersTable')
+users_table = dynamodb.Table('UserTable')
 appointments_table = dynamodb.Table('AppointmentsTable')
 
 VALID_STATUSES = {'Scheduled', 'Completed', 'Cancelled'}
