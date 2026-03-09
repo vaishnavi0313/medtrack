@@ -1,49 +1,78 @@
-MedTrack – AWS Cloud Healthcare Management System
+🏥 MedTrack – AWS Cloud Healthcare Management System
 
-MedTrack is a cloud-based healthcare management system that simplifies patient and doctor interactions. The application allows patients to book appointments, doctors to submit diagnoses, and users to manage medical history securely.
+MedTrack is a cloud-based healthcare management system designed to simplify interactions between patients and doctors. The platform allows patients to book appointments, doctors to submit diagnoses, and users to securely access their medical history.
 
-The project is built using Flask and deployed on AWS EC2 with DynamoDB for database storage and SNS for sending notifications. Nginx and Gunicorn are used for production deployment, and CloudFront is used as a CDN for faster content delivery.
+🌐 Live Application:
+👉 https://d9qfxfxqu564w.cloudfront.net/
 
-Features
+The system is built using Flask and deployed on AWS EC2, with DynamoDB used for database storage and AWS SNS for sending notifications. For production deployment, Nginx and Gunicorn are used to run the application efficiently, while AWS CloudFront acts as a CDN to improve performance and content delivery speed.
 
-Patient registration and login
+🚀 Features
 
-Doctor login and dashboard
+Patient registration and secure login
+
+Doctor login with a dedicated dashboard
 
 Appointment booking and scheduling
 
 Diagnosis submission by doctors
 
-Medical history viewing
+Viewing patient medical history
 
 Email notifications using AWS SNS
 
-Technologies Used
+Cloud-based deployment using AWS services
+
+🛠 Technologies Used
+Backend
 
 Python
 
 Flask
 
-HTML, CSS, JavaScript
+Frontend
 
-AWS EC2
+HTML
 
-AWS DynamoDB
+CSS
 
-AWS SNS
+JavaScript
 
-AWS IAM
+Cloud Services
 
-Nginx
+AWS EC2 – Hosting the application
 
+AWS DynamoDB – NoSQL database for storing medical data
+
+AWS SNS – Notification service for alerts and updates
+
+AWS IAM – Secure access management
+
+Deployment Tools
+
+Nginx – Reverse proxy server
+
+Gunicorn – WSGI HTTP server for Flask
+
+AWS CloudFront – CDN for faster content delivery
+
+☁️ AWS Architecture
+User Browser
+     │
+     ▼
+CloudFront (CDN)
+     │
+     ▼
+Nginx Server (EC2)
+     │
+     ▼
 Gunicorn
+     │
+     ▼
+Flask Application
+     │
+     ├── DynamoDB (Database)
+     └── SNS (Notifications)
+🎯 Project Outcome
 
-AWS CloudFront
-
-AWS Architecture
-
-User Browser → CloudFront → Nginx (EC2) → Gunicorn → Flask Application → DynamoDB & SNS
-
-Outcome
-
-This project demonstrates how to build and deploy a secure and scalable healthcare management system using AWS cloud services. It showcases cloud deployment, database integration, notification services, and production server configuration.
+MedTrack demonstrates how AWS cloud services can be used to build a scalable healthcare management system. The project integrates multiple AWS services to provide secure data handling, reliable infrastructure, and efficient communication between patients and doctors.
