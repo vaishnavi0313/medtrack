@@ -3,7 +3,7 @@
 MedTrack is a cloud-based healthcare management system designed to simplify interactions between patients and doctors. The platform allows patients to book appointments, doctors to submit diagnoses, and users to securely access their medical history.
 
 🌐 Live Application:
-👉 https://d9qfxfxqu564w.cloudfront.net/
+👉 https://d25arvfgm0df0b.cloudfront.net/
 
 The system is built using Flask and deployed on AWS EC2, with DynamoDB used for database storage and AWS SNS for sending notifications. For production deployment, Nginx and Gunicorn are used to run the application efficiently, while AWS CloudFront acts as a CDN to improve performance and content delivery speed.
 
